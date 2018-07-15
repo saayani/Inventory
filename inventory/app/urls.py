@@ -4,6 +4,5 @@ import app.views
 urlpatterns = [
    re_path(r'^create-brand/', app.views.create_brand, name='create_brand'),
    re_path(r'^create-item/', app.views.create_item, name='create_item'),
-   path('', views.index, name='index'),
-    
+   path('', app.views.index, name='index'),
 ]
