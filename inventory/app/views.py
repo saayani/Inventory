@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from app.forms import BrandForm
 
@@ -12,9 +12,10 @@ def create_item(request):
 
 def index(request):
 
-    if request == 'POST':
-        form = BrandForm()
+    if request.method == 'POST':
+        form = BrandForm(request.POST)
         if form.is_valid():
+            form.save()
             return HttpResponseRedirect('/')
 
     form = BrandForm()
