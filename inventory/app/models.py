@@ -4,7 +4,7 @@ from aldjemy.meta import AldjemyMeta
 class Brand(models.Model):
     name = models.CharField(max_length=255)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     __meta__ = AldjemyMeta
@@ -24,7 +24,7 @@ class Item(models.Model):
 class Variant(models.Model):
     name = models.CharField(max_length=255)
     costprice = models.FloatField()
-    sellngprice = models.FloatField()
+    sellingprice = models.FloatField()
     quantity = models.IntegerField()
     properties = models.CharField(max_length=255)
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from app.forms import BrandForm
+from app.forms import BrandForm, ItemForm
 
 # Create your views here.
 def create_brand(request, username=None):
@@ -17,6 +17,16 @@ def index(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
-
     form = BrandForm()
-    return render(request, 'index.html', {'form': form})
+
+    if request.method == 'POST':
+        item_form = ItemForm(request.POST)
+        if item_form.is_valid():
+            item_form.save()
+            return HttpResponseRedirect('/')
+    item_form = ItemForm()
+
+    return render(request, 'index.html', {
+        'form': form,
+        'item_form': item_form
+    })
